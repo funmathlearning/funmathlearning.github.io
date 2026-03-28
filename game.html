@@ -73,8 +73,8 @@
 
         .game-title {
             width: 100%;
-            max-width: 1300px;
-            padding: 16px 16px 8px 196px;
+            max-width: 1260px;
+            padding: 16px 16px 8px 176px;
             display: flex;
             align-items: center;
         }
@@ -110,21 +110,12 @@
 
         .ad-col {
             flex-shrink: 0;
-            width: 160px;
+            width: 120px;
             position: sticky;
             top: 72px;
-            /* ensure ad iframes are never clipped */
             overflow: visible;
             z-index: 10;
-        }
-
-        .ad-col iframe {
-            display: block;
-            border: 0;
-            padding: 0;
-            width: 160px;
-            height: 600px;
-            overflow: hidden;
+            min-height: 600px;
         }
 
         /* ── GAME WRAPPER ── */
@@ -244,15 +235,17 @@
 
             <!-- LEFT AD -->
             <div class="ad-col">
-                <!-- BEGIN AADS AD UNIT 2432116 -->
-                <iframe
-                    src="https://ad.a-ads.com/2432116/?size=160x600"
-                    data-aa="2432116"
-                    style="border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                    referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-                <!-- END AADS AD UNIT 2432116 -->
+                <!-- BEGIN AADS AD UNIT 2432117 -->
+                <div id="aads-left" style="width:120px;margin:auto;z-index:99998;height:auto;">
+                    <iframe
+                        data-aa="2432117"
+                        src="https://ad.a-ads.com/2432117/?size=120x600"
+                        style="border:0;padding:0;width:120px;height:600px;overflow:hidden;display:block;margin:auto;"
+                        scrolling="no"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+                <!-- END AADS AD UNIT 2432117 -->
             </div>
 
             <!-- GAME -->
@@ -279,15 +272,17 @@
 
             <!-- RIGHT AD -->
             <div class="ad-col">
-                <!-- BEGIN AADS AD UNIT 2432116 -->
-                <iframe
-                    src="https://ad.a-ads.com/2432116/?size=160x600"
-                    data-aa="2432116"
-                    style="border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                    referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-                <!-- END AADS AD UNIT 2432116 -->
+                <!-- BEGIN AADS AD UNIT 2432117 -->
+                <div id="aads-right" style="width:120px;margin:auto;z-index:99998;height:auto;">
+                    <iframe
+                        data-aa="2432117"
+                        src="https://ad.a-ads.com/2432117/?size=120x600"
+                        style="border:0;padding:0;width:120px;height:600px;overflow:hidden;display:block;margin:auto;"
+                        scrolling="no"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+                <!-- END AADS AD UNIT 2432117 -->
             </div>
 
         </div>
@@ -337,14 +332,13 @@
             frame.focus();
         });
 
-        // Keep game focused — re-focus iframe on any outside click
+        // Keep game focused
         document.addEventListener('click', (e) => {
             if (e.target !== frame) {
                 setTimeout(() => frame.focus(), 0);
             }
         });
 
-        // When tab regains focus, push it back into the iframe
         window.addEventListener('focus', () => {
             setTimeout(() => frame.focus(), 0);
         });
