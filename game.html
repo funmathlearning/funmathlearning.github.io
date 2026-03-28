@@ -74,7 +74,7 @@
         .game-title {
             width: 100%;
             max-width: 1300px;
-            padding: 16px 16px 8px 196px; /* offset left for ad col */
+            padding: 16px 16px 8px 196px;
             display: flex;
             align-items: center;
         }
@@ -113,6 +113,18 @@
             width: 160px;
             position: sticky;
             top: 72px;
+            /* ensure ad iframes are never clipped */
+            overflow: visible;
+            z-index: 10;
+        }
+
+        .ad-col iframe {
+            display: block;
+            border: 0;
+            padding: 0;
+            width: 160px;
+            height: 600px;
+            overflow: hidden;
         }
 
         /* ── GAME WRAPPER ── */
@@ -233,10 +245,13 @@
             <!-- LEFT AD -->
             <div class="ad-col">
                 <!-- BEGIN AADS AD UNIT 2432116 -->
-                <div style="width:160px;margin:auto;z-index:99998;height:auto">
-                    <iframe data-aa='2432116' src='//ad.a-ads.com/2432116/?size=160x600'
-                        style='border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;margin:auto'></iframe>
-                </div>
+                <iframe
+                    src="https://ad.a-ads.com/2432116/?size=160x600"
+                    data-aa="2432116"
+                    style="border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
                 <!-- END AADS AD UNIT 2432116 -->
             </div>
 
@@ -265,10 +280,13 @@
             <!-- RIGHT AD -->
             <div class="ad-col">
                 <!-- BEGIN AADS AD UNIT 2432116 -->
-                <div style="width:160px;margin:auto;z-index:99998;height:auto">
-                    <iframe data-aa='2432116' src='//ad.a-ads.com/2432116/?size=160x600'
-                        style='border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;margin:auto'></iframe>
-                </div>
+                <iframe
+                    src="https://ad.a-ads.com/2432116/?size=160x600"
+                    data-aa="2432116"
+                    style="border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
                 <!-- END AADS AD UNIT 2432116 -->
             </div>
 
