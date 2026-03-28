@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+body {
+    background-color: #1b1b1b;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px) saturate(200%) brightness(70%);
+    color: #fff;
+    display: flex;
+    height: 7vw;
+    width: 100%;
+    align-items: center;
+    justify-content: left;
+    padding: 0 1%;
+    z-index: 5;
+    margin: auto;
+}
+
+nav img {
+    height: 80%;
+    width: auto;
+    margin-right: 1%;
+    border-radius: 1vw;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 5px 5px 10px rgba(53, 53, 53, 0.459);
+}
+
+nav h1 {
+    font-size: 4vw;
+    font-weight: 800;
+    margin-right: 1%;
+}
+
+.content {
+    flex-direction: column;
+    align-items: left;
+    padding: 7vw;
+    padding-top: 0vw;
+}
+
+.content hr {
+    border: 0;
+    height: 4px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0));
+    margin: 1vw 0;
+}
+
+.search {
+    display: flex;
+    user-select: none;
+    margin-top: 2.5vw;
+    margin-left: 1.2vw;
+}
+ 
+.search input {
+    background-color: #222222;
+    border: none;
+    border-radius: 1vw 0 0 1vw;
+    color: #fff;
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding: 0.8vw 1.5vw;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 1;
+    outline: none;
+}
+ 
+.search input::placeholder {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5vw;
+}
+ 
+.search button {
+    background-color: #fff;
+    border: none;
+    border-radius: 0 1vw 1vw 0;
+    color:#222222;
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding: 0.8vw 1vw;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 1;
+    transition: .3s all ease;
+}
+ 
+#games {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: .6vw;
+    padding-bottom: 5vw;
+
+}
+ 
+#games img {    height: 15.6vw;
+    width: 15.6vw;
+    border-radius: 1vw;
+    margin: .5vw;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .2s;
+}
+ 
+#games img:hover {
+    transform: scale(1.01);
+}
+
+.featured {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1vw;
+    margin:1%;
+    margin-top: 6vw;
+}
+
+.featured h1 {
+    font-size: 3.5vw;
+    font-weight: 700;
+    margin: 1vw 1vw .4vw 1vw;
+    width: 83.8%;
+    text-align: left;
+    color: #fff;
+}
+
+.featured .column {
+    display: flex;
+    flex-direction: column;
+}
+
+.featured img {
+    height: 12.5vw;
+    width: 12.5vw;
+    border-radius: 1vw;
+    margin: .5vw;
+    cursor: pointer;
+    user-select: none;
+    transition: all .2s;
+}
+
+.featured img:hover {
+    transform: scale(1.02);
+    filter: brightness(50%);
+}
+
+
+.featured .row img {
+    height: 26vw;
+    width: 26vw;
+}
+
+.featured a {
+    display: inline-block;
+    position: relative;
+    color: #2c7ffc;
+    text-decoration: none;
+}
+    
+    .featured .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    }
+    
+    .featured a:hover .play-button {
+    opacity: 1;
+    pointer-events: none;
+    }
+    
+    .featured .play-button i {
+    font-size: 5vw;
+    text-shadow: 0 0 100px #2c7ffc;
+    }

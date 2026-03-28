@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>SUBWAY SUPER HOPPER GAME | @coding.stella</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" />
+	<link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+	<div id="game-container"></div>
+
+	<div id="ui-layer">
+		<div id="score-display" class="hidden">
+			SCORE: <span id="score">0</span>
+		</div>
+		<div id="instructions">
+			STEPS:<br />
+			<span class="key">←</span> <span class="key">→</span> MOVE<br />
+			<span class="key">↑</span> JUMP
+		</div>
+
+		<div id="start-screen" class="center-screen">
+			<h1 class="title">SUPER HOPPER</h1>
+			<p class="subtitle">MY CUTE ADVENTURE</p>
+			<button id="start-btn">PRESS START</button>
+		</div>
+
+		<div id="game-over-screen" class="center-screen hidden">
+			<h1 class="title">GAME OVER</h1>
+			<p class="subtitle">SCORE: <span id="final-score">0</span></p>
+			<button id="restart-btn">TRY AGAIN</button>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<!-- Using ES Modules for Three.js -->
+	<script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+        }
+      }
+    </script>
+
+	<script type="module" src="./script.js"></script>
+</body>
+</html>

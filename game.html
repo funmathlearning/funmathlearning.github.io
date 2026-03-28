@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunarV3 - Play Game</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #1b1b1b;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0;
+            backdrop-filter: blur(10px) saturate(200%) brightness(70%);
+            background: rgba(27,27,27,0.85);
+            color: #fff;
+            display: flex;
+            height: 56px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        nav img {
+            height: 38px;
+            width: auto;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        nav h1 { font-size: 1.3rem; font-weight: 800; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: #fff; }
+
+        .game-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 72px;
+            padding-bottom: 40px;
+            min-height: 100vh;
+        }
+
+        .game-title {
+            width: 100%;
+            max-width: 1300px;
+            padding: 16px 16px 8px 196px; /* offset left for ad col */
+            display: flex;
+            align-items: center;
+        }
+
+        .game-title h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 6px;
+        }
+
+        .game-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #2c7ffc, transparent);
+            border-radius: 2px;
+        }
+
+        /* ── AD + GAME ROW ── */
+        .game-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 16px;
+            width: 100%;
+            padding: 0 8px;
+        }
+
+        .ad-col {
+            flex-shrink: 0;
+            width: 160px;
+            position: sticky;
+            top: 72px;
+        }
+
+        /* ── GAME WRAPPER ── */
+        .game-wrapper {
+            flex: 1;
+            min-width: 0;
+            max-width: 960px;
+        }
+
+        .game-container {
+            width: 100%;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+            cursor: default;
+        }
+
+        .game-container iframe {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border: none;
+            display: block;
+            pointer-events: auto;
+        }
+
+        .game-loading {
+            position: absolute;
+            inset: 0;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            z-index: 10;
+            transition: opacity 0.4s ease;
+        }
+        .game-loading.hidden { opacity: 0; pointer-events: none; }
+
+        .loading-spinner {
+            width: 44px; height: 44px;
+            border: 3px solid #333;
+            border-top-color: #2c7ffc;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-text {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ── TOOLBAR ── */
+        .game-toolbar {
+            width: 100%;
+            background: #161616;
+            border-top: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .tool-btn {
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #aaa;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .tool-btn:hover { background: #2a2a2a; color: #2c7ffc; border-color: #2c7ffc; }
+
+        /* hide ads on small screens */
+        @media (max-width: 1100px) {
+            .ad-col { display: none; }
+            .game-title { padding-left: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/index.html" class="nav-left">
+            <img src="/images/logo.png" alt="logo">
+            <h1>LunarV3</h1>
+        </a>
+        <a href="/index.html" class="nav-back">
+            <i class="fa-solid fa-chevron-left"></i> All Games
+        </a>
+    </nav>
+
+    <div class="game-page">
+
+        <div class="game-title">
+            <h2 id="game-name">Loading...</h2>
+        </div>
+
+        <div class="game-row">
+
+            <!-- LEFT AD -->
+            <div class="ad-col">
+                <!-- BEGIN AADS AD UNIT 2432116 -->
+                <div style="width:160px;margin:auto;z-index:99998;height:auto">
+                    <iframe data-aa='2432116' src='//ad.a-ads.com/2432116/?size=160x600'
+                        style='border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;margin:auto'></iframe>
+                </div>
+                <!-- END AADS AD UNIT 2432116 -->
+            </div>
+
+            <!-- GAME -->
+            <div class="game-wrapper">
+                <div class="game-container" id="game-container">
+                    <div class="game-loading" id="loading-overlay">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading Game...</div>
+                    </div>
+                    <iframe
+                        id="game-frame"
+                        src=""
+                        allowfullscreen
+                        allow="autoplay; fullscreen"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="game-toolbar">
+                    <button class="tool-btn" onclick="goFullscreen()">
+                        <i class="fa-solid fa-expand"></i> Fullscreen
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT AD -->
+            <div class="ad-col">
+                <!-- BEGIN AADS AD UNIT 2432116 -->
+                <div style="width:160px;margin:auto;z-index:99998;height:auto">
+                    <iframe data-aa='2432116' src='//ad.a-ads.com/2432116/?size=160x600'
+                        style='border:0;padding:0;width:160px;height:600px;overflow:hidden;display:block;margin:auto'></iframe>
+                </div>
+                <!-- END AADS AD UNIT 2432116 -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ── GAME LIST ──
+        const games = [
+            { slug: 'bob-the-robber-2', name: 'Bob the Robber 2', src: '/games/bob-the-robber-2/', img: '/images/bob-the-robber-2.png' },
+            { slug: 'vex7',             name: 'Vex 7',            src: '/games/vex7/',             img: '/images/vex7.jpeg'            },
+            { slug: 'vex6',             name: 'Vex 6',            src: '/games/vex6/',             img: '/images/vex6.jpeg'            },
+            { slug: 'mc',               name: 'Minecraft',        src: '/games/mc/',               img: '/images/mc.png'               },
+            { slug: 'moto-x3m',         name: 'Moto X3M',         src: '/games/moto-x3m/',         img: '/images/moto-x3m.jpg'         },
+            { slug: 'retro-bowl',       name: 'Retro Bowl',       src: '/games/retro-bowl/',       img: '/images/retro-bowl.jpg'       },
+            { slug: 'drive-mad',        name: 'Drive Mad',        src: '/games/drive-mad/',        img: '/images/drive-mad.jpg'        },
+            { slug: 'slope',            name: 'Slope',            src: '/games/slope/',            img: '/images/slope.jpg'            },
+            { slug: 'motox3m2',         name: 'Moto X3M 2',       src: '/games/motox3m2/',         img: '/images/motox3m2.jpg'         },
+            { slug: 'stick-hero',       name: 'Stick Hero',       src: '/games/stick-hero/',       img: '/images/stick-hero.png'       },
+            { slug: 'escape-road',      name: 'Escape Road',      src: '/games/escape-road/',      img: '/images/escape-road.jpg'      },
+            { slug: 'hopper',           name: 'Hopper',           src: '/games/hopper/',           img: '/images/hopper.png'           },
+            { slug: 'crossy-road-1',    name: 'Crossy Road 1',    src: '/games/crossy-road-1/',    img: '/images/crossy-road-1.png'    },
+            { slug: 'snake',            name: 'Snake',            src: '/games/snake/',            img: '/images/snake.png'            },
+            { slug: 'toaster-catcher',  name: 'Toaster Catcher',  src: '/games/toaster-catcher/',  img: '/images/toaster-catcher.jpg'  },
+            { slug: 'geometry-dash',    name: 'Geometry Dash',    src: '/games/geometry-dash/',    img: '/images/geometry-dash.jpg'    },
+            { slug: 'catch-the-rabbit', name: 'Catch the Rabbit', src: '/games/catch-the-rabbit/', img: '/images/catch-the-rabbit.jpg' },
+            { slug: '1v1lolonline',     name: '1v1 LOL Online',   src: '/games/1v1lolonline/',     img: '/images/1v1lolonline.png'     },
+            { slug: '1v1lol',           name: '1v1 LOL',          src: '/games/1v1lol/',           img: '/images/1v1lol.jpg'           },
+            { slug: 'drift-boss',       name: 'Drift Boss',       src: '/games/drift-boss/',       img: '/images/drift-boss.jpg'       },
+            { slug: 'among-us',         name: 'Among Us',         src: '/games/among-us/',         img: '/images/among-us.jpg'         },
+            { slug: 'poly-track',       name: 'Poly Track',       src: '/games/poly-track/',       img: '/images/poly-track.jpg'       },
+            { slug: 'poly-track-old',   name: 'Poly Track Old',   src: '/games/poly-track-old/',   img: '/images/poly-track-old.jpg'   },
+            { slug: 'crazy-cattle',     name: 'Crazy Cattle',     src: '/games/crazy-cattle/',     img: '/images/crazy-cattle.jpg'     },
+        ];
+
+        const params  = new URLSearchParams(window.location.search);
+        const slug    = params.get('slug');
+        const current = games.find(g => g.slug === slug) || games[0];
+
+        document.title = `LunarV3 - ${current.name}`;
+        document.getElementById('game-name').textContent = current.name.toUpperCase();
+
+        const frame = document.getElementById('game-frame');
+        frame.src = current.src;
+        frame.addEventListener('load', () => {
+            document.getElementById('loading-overlay').classList.add('hidden');
+            frame.focus();
+        });
+
+        // Keep game focused — re-focus iframe on any outside click
+        document.addEventListener('click', (e) => {
+            if (e.target !== frame) {
+                setTimeout(() => frame.focus(), 0);
+            }
+        });
+
+        // When tab regains focus, push it back into the iframe
+        window.addEventListener('focus', () => {
+            setTimeout(() => frame.focus(), 0);
+        });
+
+        // ── FULLSCREEN ──
+        function goFullscreen() {
+            const el = document.getElementById('game-frame');
+            if (el.requestFullscreen)            el.requestFullscreen();
+            else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        }
+    </script>
+</body>
+</html>

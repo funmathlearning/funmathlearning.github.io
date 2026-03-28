@@ -1,0 +1,69 @@
+:root {
+  background-color: #7DC8CF;
+  font-family: system-ui;
+  font-variant-numeric: tabular-nums;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+svg {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: lightblue;
+}
+
+.frame {
+  border: 6px solid #67442b;
+  border-radius: 16px;
+  background: #67442b;
+}
+
+#game {
+  border-radius: 10px;
+  user-select: none;
+}
+
+.toast {
+  cursor: pointer;
+}
+.toast__wings {
+  animation: wings-flapping linear infinite 0.4s;
+  transform-origin: center 85%;
+  pointer-events: none;
+}
+.toast__eyes {
+  animation: blink linear infinite 2s;
+  transform-origin: 15px;
+}
+
+@keyframes wings-flapping {
+  0%, 100% {
+    scale: 1 1;
+  }
+  50% {
+    scale: 1 0.8;
+  }
+}
+@keyframes blink {
+  0%, 90% {
+    scale: 1 1;
+  }
+  100% {
+    scale: 1 0;
+  }
+}

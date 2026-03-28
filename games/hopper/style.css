@@ -1,0 +1,133 @@
+:root {
+	--primary-color: #ff6b6b;
+	--secondary-color: #4ecdc4;
+	--text-color: #ffffff;
+	--pixel-font: "VT323", monospace;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+
+body {
+	overflow: hidden;
+	background-color: #222;
+	font-family: var(--pixel-font);
+}
+
+#game-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+}
+
+#ui-layer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	pointer-events: none;
+	/* Let clicks pass through except on buttons */
+}
+
+/* Enable pointer events on interactive elements */
+button {
+	pointer-events: auto;
+}
+
+.center-screen {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 2rem 4rem;
+	border-radius: 1rem;
+	backdrop-filter: blur(4px);
+	border: 4px solid #fff;
+	box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.title {
+	font-size: 6rem;
+	color: #ffd700;
+	text-shadow: 4px 4px #ff6b6b;
+	margin-bottom: 0.5rem;
+	line-height: 1;
+}
+
+.subtitle {
+	font-size: 2.5rem;
+	color: #fff;
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+}
+
+button {
+	background: #fff;
+	color: #222;
+	border: none;
+	padding: 1rem 2rem;
+	font-size: 2.5rem;
+	font-family: var(--pixel-font);
+	cursor: pointer;
+	transition: transform 0.1s, box-shadow 0.1s;
+	box-shadow: 0 6px 0 #999;
+}
+
+button:active {
+	transform: translateY(6px);
+	box-shadow: 0 0 0 #999;
+}
+
+button:hover {
+	background: #f0f0f0;
+}
+
+#instructions {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: linear-gradient(135deg,
+			rgba(255, 255, 255, 0.2),
+			rgba(255, 255, 255, 0.05));
+	padding: 1rem;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1.5rem;
+	text-align: right;
+	backdrop-filter: blur(4px);
+	border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.key {
+	display: inline-block;
+	border: 2px solid #fff;
+	border-radius: 4px;
+	padding: 0 6px;
+	margin: 0 2px;
+	font-weight: bold;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+#score-display {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-size: 3rem;
+	color: #fff;
+	text-shadow: 2px 2px #000;
+}
+
+.hidden {
+	display: none !important;
+}

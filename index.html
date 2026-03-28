@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunarV3</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+</head>
+<body>
+    <nav>
+        <img src="images/logo.png" alt="logo">
+        <h1>LunarV3</h1>
+    </nav>
+
+    <div class="featured">
+        <h1>Popular:</h1>
+        <div class="column">
+          <a href="/game.html?slug=bob-the-robber-2">
+            <img src="images/bob-the-robber-2.png">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+          <a href="/game.html?slug=vex7">
+            <img src="images/vex7.jpeg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <a href="/game.html?slug=vex6">
+            <img src="images/vex6.jpeg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <a href="/game.html?slug=drive-mad">
+            <img src="images/drive-mad.jpg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+        <div class="column">
+          <a href="/game.html?slug=moto-x3m">
+            <img src="images/moto-x3m.jpg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+          <a href="/game.html?slug=retro-bowl">
+            <img src="images/retro-bowl.jpg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+    </div>
+
+    <div class="content">
+
+    <hr>
+
+    <div class="search">
+        <input type="text" placeholder="Search..." oninput="filterGames(this.value)">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <div id="games">
+        <a href="/game.html?slug=bob-the-robber-2"><img src="images/bob-the-robber-2.png" alt="bob the robber 2"></a>
+        <a href="/game.html?slug=vex7"><img src="images/vex7.jpeg" alt="vex 7"></a>
+        <a href="/game.html?slug=vex6"><img src="images/vex6.jpeg" alt="vex 6"></a>
+        <a href="/game.html?slug=mc"><img src="images/mc.png" alt="minecraft"></a>
+        <a href="/game.html?slug=moto-x3m"><img src="images/moto-x3m.jpg" alt="moto x3m"></a>
+        <a href="/game.html?slug=retro-bowl"><img src="images/retro-bowl.jpg" alt="retrobowl"></a>
+        <a href="/game.html?slug=drive-mad"><img src="images/drive-mad.jpg" alt="drive mad"></a>
+        <a href="/game.html?slug=slope"><img src="images/slope.jpg" alt="slope"></a>
+        <a href="/game.html?slug=motox3m2"><img src="images/motox3m2.jpg" alt="moto x3m2"></a>
+        <a href="/game.html?slug=stick-hero"><img src="images/stick-hero.png" alt="stick hero"></a>
+        <a href="/game.html?slug=escape-road"><img src="images/escape-road.jpg" alt="escape road"></a>
+        <a href="/game.html?slug=hopper"><img src="images/hopper.png" alt="hopper"></a>
+        <a href="/game.html?slug=crossy-road-1"><img src="images/crossy-road-1.png" alt="crossy road 1"></a>
+        <a href="/game.html?slug=snake"><img src="images/snake.png" alt="snake"></a>
+        <a href="/game.html?slug=toaster-catcher"><img src="images/toaster-catcher.jpg" alt="toaster catcher"></a>
+        <a href="/game.html?slug=geometry-dash"><img src="images/geometry-dash.jpg" alt="geometry dash"></a>
+        <a href="/game.html?slug=catch-the-rabbit"><img src="images/catch-the-rabbit.jpg" alt="catch the rabbit"></a>
+        <a href="/game.html?slug=1v1lolonline"><img src="images/1v1lolonline.png" alt="1v1 lol online"></a>
+        <a href="/game.html?slug=1v1lol"><img src="images/1v1lol.jpg" alt="1v1 lol"></a>
+        <a href="/game.html?slug=drift-boss"><img src="images/drift-boss.jpg" alt="drift boss"></a>
+        <a href="/game.html?slug=among-us"><img src="images/among-us.jpg" alt="among us"></a>
+        <a href="/game.html?slug=poly-track"><img src="images/poly-track.jpg" alt="poly track"></a>
+        <a href="/game.html?slug=poly-track-old"><img src="images/poly-track-old.jpg" alt="poly track old"></a>
+        <a href="/game.html?slug=crazy-cattle"><img src="images/crazy-cattle.jpg" alt="crazy cattle"></a>
+
+    </div>
+    </div>
+
+    <script>
+        function filterGames(query) {
+            const q = query.toLowerCase();
+            document.querySelectorAll('#games a').forEach(a => {
+                const alt = a.querySelector('img').alt.toLowerCase();
+                a.style.display = alt.includes(q) ? '' : 'none';
+            });
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
